@@ -1,0 +1,20 @@
+# Allow access to image files only
+<Files ~ "\.(jpg|jpeg|png|gif|webp)$">
+    Order allow,deny
+    Allow from all
+</Files>
+
+# Deny access to non-image files
+<Files ~ "\.(php|html|txt|log|sql|ini|conf)$">
+    Order deny,allow
+    Deny from all
+</Files>
+
+# Prevent directory browsing
+Options -Indexes
+
+# Security headers for supported servers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+</IfModule>
